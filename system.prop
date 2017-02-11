@@ -1,3 +1,7 @@
+ro.product.name=ZTE Blade Vec 4G
+ro.product.model=ZTE Blade Vec 4G
+ro.product.device=bladevec4g
+
 telephony.lteOnGsmDevice=0
 ro.telephony.default_network=3
 
