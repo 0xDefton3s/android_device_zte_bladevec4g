@@ -18,8 +18,152 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
+# Inherit from those products. Most specific first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+
 # Specific overlay
 DEVICE_PACKAGE_OVERLAYS += device/zte/bladevec4g/overlay
+
+# Permissions
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
+    frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
+    frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
+    frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
+    frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
+    frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+    frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
+    frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
+    frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
+    frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
+    frameworks/native/data/etc/android.hardware.sensor.stepcounter.xml:system/etc/permissions/android.hardware.sensor.stepcounter.xml \
+    frameworks/native/data/etc/android.hardware.sensor.stepdetector.xml:system/etc/permissions/android.hardware.sensor.stepdetector.xml \
+    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
+    frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
+    frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
+    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
+    frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
+    frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
+    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
+    frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml \
+    frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
+    frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
+
+# Configs
+PRODUCT_COPY_FILES += \
+    device/zte/bladevec4g/etc/audio_policy.conf:system/etc/audio_policy.conf \
+    device/zte/bladevec4g/etc/media_codecs.xml:system/etc/media_codecs.xml \
+    device/zte/bladevec4g/etc/thermal-engine-8226.conf:system/etc/thermal-engine-8226.conf
+
+# Ramdisk
+PRODUCT_COPY_FILES += \
+    device/zte/bladevec4g/rootdir/fstab.qcom:root/fstab.qcom \
+    device/zte/bladevec4g/rootdir/init.qcom.rc:root/init.qcom.rc \
+    device/zte/bladevec4g/rootdir/init.qcom.usb.rc:root/init.qcom.usb.rc \
+    device/zte/bladevec4g/rootdir/ueventd.qcom.rc:root/ueventd.qcom.rc \
+    device/zte/bladevec4g/rootdir/init.qcom.ril.sh:system/etc/init.qcom.ril.sh
+
+# GPS
+PRODUCT_COPY_FILES += \
+    device/zte/bladevec4g/gps/etc/gps.conf:system/etc/gps.conf \
+    device/zte/bladevec4g/gps/etc/flp.conf:system/etc/flp.conf \
+    device/zte/bladevec4g/gps/etc/izat.conf:system/etc/izat.conf \
+    device/zte/bladevec4g/gps/etc/quipc.conf:system/etc/quipc.conf \
+    device/zte/bladevec4g/gps/etc/sap.conf:system/etc/sap.conf
+
+# Qcom wlan
+ifeq ($(BOARD_HAS_QCOM_WCNSS),true)
+PRODUCT_COPY_FILES += \
+    device/zte/bladevec4g/prebuilt/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
+    device/zte/bladevec4g/rootdir/init.wcnss.rc:root/init.wcnss.rc
+
+PRODUCT_PROPERTY_OVERRIDES += ro.qualcomm.bt.hci_transport=smd
+
+PRODUCT_PACKAGES += \
+    FMRadio \
+    libfmjni \
+    wcnss_service \
+    libwcnss_qmi
+endif
+
+# Audio
+PRODUCT_PACKAGES += \
+    audiod \
+    audio.a2dp.default \
+    audio.primary.msm8226 \
+    audio.r_submix.default \
+    audio.usb.default \
+    libaudio-resampler \
+    libqcompostprocbundle \
+    libqcomvisualizer \
+    libqcomvoiceprocessing \
+    tinymix
+
+# Misc dependency packages
+PRODUCT_PACKAGES += \
+    libxml2 \
+    libcurl \
+    libboringssl-compat
+
+# Ebtables
+PRODUCT_PACKAGES += \
+    ebtables \
+    ethertypes \
+    libebtc
+
+# Keystore
+PRODUCT_PACKAGES += keystore.msm8226
+
+# Charger
+PRODUCT_PACKAGES += charger charger_res_images
+
+# Gello
+PRODUCT_PACKAGES += \
+    Gello
+
+# GPS
+PRODUCT_PACKAGES += \
+    gps.msm8226
+
+# HAL
+PRODUCT_PACKAGES += \
+    copybit.msm8226\
+    gralloc.msm8226 \
+    hwcomposer.msm8226 \
+    lights.msm8226 \
+    memtrack.msm8226 \
+    power.msm8226 \
+    sensors.msm8226 \
+    sensors.qcom
+
+
+# OMX
+PRODUCT_PACKAGES += \
+    libOmxCore \
+    libOmxVdec \
+    libOmxVenc \
+    libstagefrighthw
+
+#wifi
+PRODUCT_PACKAGES += \
+    dhcpcd.conf \
+    libwpa_client \
+    hostapd \
+    wpa_supplicant \
+    wpa_supplicant.conf \
+    wpa_supplicant_overlay.conf \
+    p2p_supplicant_overlay.conf \
+    hostapd_default.conf \
+    hostapd.accept \
+    hostapd.deny
+
+# Camera
+PRODUCT_PACKAGES += \
+    camera.msm8226 \
+    Snap
 
 # Configs
 PRODUCT_COPY_FILES += \
@@ -36,3 +180,6 @@ BOARD_HAS_QCOM_WCNSS := true
 # Inherit from msm8226-common
 $(call inherit-product, vendor/zte/bladevec4g/bladevec4g-vendor.mk)
 
+
+# System properties
+-include device/zte/bladevec4g/system_prop.mk
