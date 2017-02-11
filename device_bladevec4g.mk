@@ -177,7 +177,7 @@ PRODUCT_AAPT_PREF_CONFIG := xhdpi
 # Common specific options
 BOARD_HAS_QCOM_WCNSS := true
 
-# Inherit from msm8226-common
+# Inherit from bladevec4g
 $(call inherit-product, vendor/zte/bladevec4g/bladevec4g-vendor.mk)
 
 
