@@ -113,7 +113,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libxml2 \
     libcurl \
-    libboringssl-compat
+    libboringssl-compat \
+	libstlport
 
 # Ebtables
 PRODUCT_PACKAGES += \
