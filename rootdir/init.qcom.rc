@@ -498,6 +498,11 @@ service rild1-wrapper /system/bin/sh /system/etc/init.qcom.ril.sh
     user root
     group root
     oneshot
+	
+service qcom-sh /system/bin/sh /init.qcom.sh
+    class late_start
+    user root
+    oneshot
 
 on property:ro.bootmode=chargerlogo
     class_reset main

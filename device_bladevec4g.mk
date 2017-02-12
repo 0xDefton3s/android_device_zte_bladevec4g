@@ -68,6 +68,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/zte/bladevec4g/rootdir/fstab.qcom:root/fstab.qcom \
     device/zte/bladevec4g/rootdir/init.qcom.rc:root/init.qcom.rc \
+    device/zte/bladevec4g/rootdir/init.qcom.sh:root/init.qcom.sh \
     device/zte/bladevec4g/rootdir/init.qcom.usb.rc:root/init.qcom.usb.rc \
     device/zte/bladevec4g/rootdir/ueventd.qcom.rc:root/ueventd.qcom.rc \
     device/zte/bladevec4g/rootdir/init.qcom.ril.sh:system/etc/init.qcom.ril.sh
