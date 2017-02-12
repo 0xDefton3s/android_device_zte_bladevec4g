@@ -5,7 +5,7 @@ ro.product.device=bladevec4g
 telephony.lteOnGsmDevice=0
 ro.telephony.default_network=3
 
-ro.sf.lcd_density=240
+ro.sf.lcd_density=300
 
 ro.qualcomm.sensors.qmd=false
 ro.qc.sdk.sensors.gestures=true
