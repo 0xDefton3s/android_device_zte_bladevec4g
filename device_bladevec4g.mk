@@ -31,10 +31,10 @@ TARGET_SCREEN_WIDTH := 720
 TARGET_BOOTANIMATION_HALF_RES := true
 
 # Fix ADB
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-ro.secure=0
-ro.debuggable=1
-persist.sys.usb.config=adb,mtp
+ADDITIONAL_DEFAULT_PROPERTIES += \
+ro.secure=0 \
+ro.debuggable=1 \
+persist.sys.usb.config=mtp \
 ro.adb.secure=0
 
 # Permissions
