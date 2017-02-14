@@ -30,6 +30,13 @@ TARGET_SCREEN_HEIGHT := 1280
 TARGET_SCREEN_WIDTH := 720
 TARGET_BOOTANIMATION_HALF_RES := true
 
+# Fix ADB
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+ro.secure=0
+ro.debuggable=1
+persist.sys.usb.config=adb,mtp
+ro.adb.secure=0
+
 # Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
