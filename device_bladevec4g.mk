@@ -114,9 +114,6 @@ PRODUCT_PACKAGES += \
 # Keystore
 PRODUCT_PACKAGES += keystore.msm8226
 
-# Charger
-PRODUCT_PACKAGES += charger charger_res_images
-
 # Gello
 PRODUCT_PACKAGES += \
     Gello
