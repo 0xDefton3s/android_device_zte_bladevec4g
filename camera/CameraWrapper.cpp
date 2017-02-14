@@ -340,7 +340,6 @@ static char *camera_fixup_getparams(int id, const char *settings)
 
     property_get("ro.product.board", board, "ro.product.board not found!!!");
 
-    if (!strcmp(board, "g2m") || (!strcmp(board, "jagnm")) || (!strcmp(board, "jag3gds"))) {
         /* Add fake HDR as supported scene mode in "scene-mode-values" */
         if (photoMode) {
             sceneModes = strdup(params.get(CameraParameters::KEY_SUPPORTED_SCENE_MODES));
@@ -350,9 +349,6 @@ static char *camera_fixup_getparams(int id, const char *settings)
             }
             free(sceneModes);
         }
-    } else {
-        ALOGW("HDR is not supported, device: %s", board);
-    }
 
     params.set(CameraParameters::DENOISE_ON_OFF_MODES_MAP, "denoise-off,denoise-on");
 

@@ -73,18 +73,8 @@ PRODUCT_COPY_FILES += \
     device/zte/bladevec4g/rootdir/ueventd.qcom.rc:root/ueventd.qcom.rc \
     device/zte/bladevec4g/rootdir/init.qcom.ril.sh:system/etc/init.qcom.ril.sh
 
-# GPS
 PRODUCT_COPY_FILES += \
-    device/zte/bladevec4g/gps/etc/gps.conf:system/etc/gps.conf \
-    device/zte/bladevec4g/gps/etc/flp.conf:system/etc/flp.conf \
-    device/zte/bladevec4g/gps/etc/izat.conf:system/etc/izat.conf \
-    device/zte/bladevec4g/gps/etc/quipc.conf:system/etc/quipc.conf \
-    device/zte/bladevec4g/gps/etc/sap.conf:system/etc/sap.conf
-
-# Qcom wlan
-ifeq ($(BOARD_HAS_QCOM_WCNSS),true)
-PRODUCT_COPY_FILES += \
-    device/zte/bladevec4g/prebuilt/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
+    device/zte/bladevec4g/rootdir/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
     device/zte/bladevec4g/rootdir/init.wcnss.rc:root/init.wcnss.rc
 
 PRODUCT_PROPERTY_OVERRIDES += ro.qualcomm.bt.hci_transport=smd
@@ -94,7 +84,6 @@ PRODUCT_PACKAGES += \
     libfmjni \
     wcnss_service \
     libwcnss_qmi
-endif
 
 # Audio
 PRODUCT_PACKAGES += \
