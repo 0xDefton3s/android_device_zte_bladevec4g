@@ -62,6 +62,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/zte/bladevec4g/etc/audio_policy.conf:system/etc/audio_policy.conf \
     device/zte/bladevec4g/etc/media_codecs.xml:system/etc/media_codecs.xml \
+    device/zte/bladevec4g/etc/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
+	device/zte/bladevec4g/etc/audio_platform_info.xml:system/etc/audio_platform_info.xml \
+    device/zte/bladevec4g/etc/media_profiles.xml:system/etc/media_profiles.xml \
+    device/zte/bladevec4g/etc/mixer_paths.xml:system/etc/mixer_paths.xml \
     device/zte/bladevec4g/etc/thermal-engine-8226.conf:system/etc/thermal-engine-8226.conf
 
 # Ramdisk
@@ -158,11 +162,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     camera.msm8226 \
     Snap
-
-# Configs
-PRODUCT_COPY_FILES += \
-    device/zte/bladevec4g/etc/media_profiles.xml:system/etc/media_profiles.xml \
-    device/zte/bladevec4g/etc/mixer_paths.xml:system/etc/mixer_paths.xml \
 
 # Screen density
 PRODUCT_AAPT_CONFIG := normal
