@@ -14,3 +14,6 @@ PRODUCT_MODEL := bladevec4g
 PRODUCT_DEVICE := bladevec4g
 PRODUCT_MANUFACTURER := ZTE
 PRODUCT_BRAND := zte
+
+# Root
+WITH_SU=true
