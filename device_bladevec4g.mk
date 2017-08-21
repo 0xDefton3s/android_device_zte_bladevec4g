@@ -22,10 +22,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # Specific overlay
-DEVICE_PACKAGE_OVERLAYS += device/zte/bladevec4g/overlay
+DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
 # Boot
-
 TARGET_SCREEN_HEIGHT := 1280
 TARGET_SCREEN_WIDTH := 720
 TARGET_BOOTANIMATION_HALF_RES := true
@@ -65,28 +64,18 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
 
-# Configs
-PRODUCT_COPY_FILES += \
-    device/zte/bladevec4g/etc/audio_policy.conf:system/etc/audio_policy.conf \
-    device/zte/bladevec4g/etc/media_codecs.xml:system/etc/media_codecs.xml \
-    device/zte/bladevec4g/etc/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
-	device/zte/bladevec4g/etc/audio_platform_info.xml:system/etc/audio_platform_info.xml \
-    device/zte/bladevec4g/etc/media_profiles.xml:system/etc/media_profiles.xml \
-    device/zte/bladevec4g/etc/mixer_paths.xml:system/etc/mixer_paths.xml \
-    device/zte/bladevec4g/etc/thermal-engine-8226.conf:system/etc/thermal-engine-8226.conf
-
 # Ramdisk
 PRODUCT_COPY_FILES += \
-    device/zte/bladevec4g/rootdir/fstab.qcom:root/fstab.qcom \
-    device/zte/bladevec4g/rootdir/init.qcom.rc:root/init.qcom.rc \
-    device/zte/bladevec4g/rootdir/init.qcom.sh:root/init.qcom.sh \
-    device/zte/bladevec4g/rootdir/init.qcom.usb.rc:root/init.qcom.usb.rc \
-    device/zte/bladevec4g/rootdir/ueventd.qcom.rc:root/ueventd.qcom.rc \
-    device/zte/bladevec4g/rootdir/init.qcom.ril.sh:system/etc/init.qcom.ril.sh
+    $(LOCAL_PATH)/rootdir/fstab.qcom:root/fstab.qcom \
+    $(LOCAL_PATH)/rootdir/init.qcom.rc:root/init.qcom.rc \
+    $(LOCAL_PATH)/rootdir/init.qcom.sh:root/init.qcom.sh \
+    $(LOCAL_PATH)/rootdir/init.qcom.usb.rc:root/init.qcom.usb.rc \
+    $(LOCAL_PATH)/rootdir/ueventd.qcom.rc:root/ueventd.qcom.rc \
+    $(LOCAL_PATH)/rootdir/init.qcom.ril.sh:system/etc/init.qcom.ril.sh
 
 PRODUCT_COPY_FILES += \
-    device/zte/bladevec4g/rootdir/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
-    device/zte/bladevec4g/rootdir/init.wcnss.rc:root/init.wcnss.rc
+    $(LOCAL_PATH)/rootdir/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
+    $(LOCAL_PATH)/rootdir/init.wcnss.rc:root/init.wcnss.rc
 
 PRODUCT_PROPERTY_OVERRIDES += ro.qualcomm.bt.hci_transport=smd
 
@@ -108,6 +97,16 @@ PRODUCT_PACKAGES += \
     libqcomvisualizer \
     libqcomvoiceprocessing \
     tinymix
+
+# Audio configuration
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/audio/audio_effects.conf:system/vendor/etc/audio_effects.conf \
+    $(LOCAL_PATH)/audio/audio_platform_info.xml:system/etc/audio_platform_info.xml \
+    $(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
+    $(LOCAL_PATH)/audio/mixer_paths.xml:system/etc/mixer_paths.xml \
+    $(LOCAL_PATH)/audio/media_codecs.xml:system/etc/media_codecs.xml \
+    $(LOCAL_PATH)/audio/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
+    $(LOCAL_PATH)/audio/media_profiles.xml:system/etc/media_profiles.xml
 
 # Misc dependency packages
 PRODUCT_PACKAGES += \
@@ -180,4 +179,4 @@ $(call inherit-product, vendor/zte/bladevec4g/bladevec4g-vendor.mk)
 
 
 # System properties
--include device/zte/bladevec4g/system_prop.mk
+-include $(LOCAL_PATH)/system_prop.mk
