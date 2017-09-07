@@ -124,10 +124,6 @@ PRODUCT_PACKAGES += \
 # Keystore
 PRODUCT_PACKAGES += keystore.msm8226
 
-# Gello
-PRODUCT_PACKAGES += \
-    Gello
-
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm8226
